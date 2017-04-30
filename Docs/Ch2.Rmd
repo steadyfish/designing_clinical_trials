@@ -1,0 +1,29 @@
+---
+title: "Designing Clinical Trials - Ch 2"
+output: html_notebook
+---
+
+```{r}
+source("../Docs/pre.R")
+d_nodes = read.csv("../data/ch2_nodes_conceiving_the_research_question.csv",
+                   stringsAsFactors = FALSE)
+d_edges = read.csv("../data/ch2_edges_conceiving_the_research_question.csv",
+                   stringsAsFactors = FALSE)
+d_comb = d_edges %>%
+  left_join(d_nodes, by = c("Sub.element" = "Element")) 
+
+a = FromDataFrameNetwork(d_comb)
+# print(a, "Group")
+b = Clone(a$children[[1]])
+# print(b, "Group")
+
+collapsibleTree1(node = b, 
+                hierarchy = c("0", "1", "2", "3"), 
+                root = "Conceiving the research questions",
+                attribute = "Purpose",
+                tooltip = TRUE,
+                aggFun = NULL,
+                width = 1000
+                )
+
+```
