@@ -3,17 +3,19 @@ title: "Designing Clinical Trials - Ch 1"
 output: html_notebook
 ---
 
+## Anatomy
+
 ```{r}
 library(plyr)
 library(dplyr)
 library(collapsibleTree)
-d_1 = read.csv("../data/ch1_nodes_anatomy_outline_of_study_protocol.csv")
-d_2 = read.csv("../data/ch1_edges_anatomy_outline_of_study_protocol_subelements.csv")
-d_3 = d_1 %>%
-  left_join(d_2, by = c("Element" = "Element")) %>%
+d_nodes = read.csv("../data/ch1_nodes_anatomy_outline_of_study_protocol.csv")
+d_edges = read.csv("../data/ch1_edges_anatomy_outline_of_study_protocol_subelements.csv")
+d_comb = d_nodes %>%
+  left_join(d_edges, by = c("Element" = "Element")) %>%
   mutate(root = "Anatomy of clinical trials")
 
-collapsibleTree(df = d_3, 
+collapsibleTree(df = d_comb, 
                 hierarchy = c("Element", "Sub.element"), 
                 root = "Anatomy of clinical trials",
                 attribute = "Purpose",
@@ -25,3 +27,4 @@ collapsibleTree(df = d_3,
 
 ```
 
+## Physiology
