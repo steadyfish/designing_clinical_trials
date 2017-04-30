@@ -20,7 +20,8 @@ collapsibleTree(df = d_comb,
                 root = "Anatomy of clinical trials",
                 attribute = "Purpose",
                 tooltip = TRUE,
-                aggFun = first
+                aggFun = first,
+                width = 1000
                 )
 
 
